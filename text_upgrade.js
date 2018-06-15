@@ -1,50 +1,69 @@
-let story = 'Last weekend, I took literally the most beautiful bike ride of my life. The route is called "The 9W to Nyack" and it actually stretches all the way from Riverside Park in Manhattan to South Nyack, New Jersey. It\'s really an adventure from beginning to end! It is a 48 mile loop and it basically took me an entire day. I stopped at Riverbank State Park to take some extremely artsy photos. It was a short stop, though, because I had a really long way left to go. After a quick photo op at the very popular Little Red Lighthouse, I began my trek across the George Washington Bridge into New Jersey.  The GW is actually very long - 4,760 feet! I was already very tired by the time I got to the other side.  An hour later, I reached Greenbrook Nature Sanctuary, an extremely beautiful park along the coast of the Hudson.  Something that was very surprising to me was that near the end of the route you actually cross back into New York! At this point, you are very close to the end.';
+const getUserChoice = userInput =>{
+userInput = userInput.toLowerCase();
+ if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors'){
+   return userInput;
+ } else {
+   console.log ('Error: incorrect input');
+ }}
 
 
 
-let overusedWords = ['really', 'very', 'basically'];
-
-let unnecessaryWords = ['extremely', 'literally', 'actually' ];
-
-let storyWords = story.split(' ');
-
-let betterWords = storyWords.filter(word => ! overusedWords.includes(word));
-
-//Better words
-
-let really = 0;
-let very = 0;
-let basically = 0;
-
-for (let swIndex = 0; swIndex <= storyWords.length; swIndex++) {
-    bword = storyWords[swIndex];
-
-if (bword ==='really'){
-  really++
-} else if (bword  ==='very'){
-  very++
-} else if (bword ==='basically') {
-  basically++
-};
-if( (! really>1 && bword==='really') || 
-   (! very > 1 && bword==='very') ||
-   (! basically > 1 && bword==='basically')) {
-  betterWords.pop (bword);
-} 
+const getComputerChoice =() =>{
+ randomNumber = Math.floor(Math.random() *3);
   
-};
-console.log(very, basically, really);
-betWords = betterWords.join(' ');
-console.log(betWords);
-
-//Counting sentences
-
-let sentences = 0;
-betterWords.forEach( word => {
-  if (word[word.length-1] === '.' || word[word.length-1] === '!') {
-    sentences+=1;
+  switch (randomNumber) {
+    case 0:
+      return 'rock';
+    case 1:
+      return 'scissors'; 
+    case 2: 
+      return 'paper';
   }
-});
-console.log('We have ' + sentences + ' sentences');
+}
+
+
+const determineWinner = (userChoice, computerChoice) => {
+  
+  if (userChoice === computerChoice){
+    return 'It is a tie!';} 
+  
+   else if (userChoice === 'rock') {
+        if (computerChoice === 'paper'){
+      	return 'Computer brain is a gain!';} 
+        else {return 'Go Humans!!';}}
+     
+   if (userChoice  === 'paper'){
+    if (computerChoice === 'scissors'){
+      return 'You snooze you lose!';
+    } else {
+      return 'You are rock! ';
+    }
+  } ;
+  if (userChoice === 'scissors'){
+      if (computerChoice === 'rock'){
+        return 'Dont be upsetti eat some spaghetti!';
+      } 
+    else {
+        return 'Whooohooo! Eat my dust!';
+      } 
+  } 
+}
+
+const playGame = () => {
+  
+  const userChoice = getUserChoice('rock'); 
+  const computerChoice = getComputerChoice();
+  
+  console.log(`You chose a ${userChoice}`);
+  console.log(`AI chose a  ${computerChoice}`);
+  
+  console.log(determineWinner(userChoice, computerChoice));
+  
+}
+
+playGame();
+
+
+
 
 
