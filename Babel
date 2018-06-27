@@ -1,0 +1,29 @@
+1. Use npm to create a package.json file in the root directory.
+
+npm init -D
+
+
+2. Install the Babel command line and Babel preset environment npm packages.
+Also, add these packages to the devDependencies property in package.json.
+
+npm install babel-cli -D
+npm install babel-preset-env -D
+
+3. Add a .babelrc file to the project folder
+
+touch .babelrc
+
+4. In .babelrc, preset your local project's config to "env".
+
+Use the file navigator to open .babelrc. Copy the following object into the file:
+
+{
+  "presets": ["env"]
+}
+
+5.In package.json, add a script called "build".
+(use Babel to transpile  code inside of the src  to a lib folder.)
+
+"build": "babel src -d lib"
+
+6. npm run build
